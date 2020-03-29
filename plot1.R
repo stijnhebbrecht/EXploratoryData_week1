@@ -23,4 +23,5 @@ if(file.exists("household_power_consumption.txt")) {
 ##convert file
 data <- tbl_df(data)
 data[, 3:9] <- lapply(data[, 3:9], as.numeric)
-hist(data$Global_active_power, col = "red")
+hist(data$Global_active_power, col = "red", xlab =  "Global Active Power (kilowats)" , main="Global Active Power")
+dev.copy(png,file="plot1.png",width=480, height=480) 

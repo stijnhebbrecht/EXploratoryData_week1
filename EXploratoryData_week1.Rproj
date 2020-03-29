@@ -4,6 +4,7 @@ library(reshape2)
 library(gridExtra)
 library(grid)
 
+##load data
 if(file.exists("household_power_consumption.txt")) {
   data0 <- read.table("household_power_consumption.txt",
                       sep = ";", header = TRUE, stringsAsFactors = FALSE)
