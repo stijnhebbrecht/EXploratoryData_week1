@@ -1,0 +1,26 @@
+library(dplyr)
+library(ggplot2)
+library(reshape2)
+library(gridExtra)
+library(grid)
+
+##load data
+if(file.exists("household_power_consumption.txt")) {
+  data0 <- read.table("household_power_consumption.txt",
+                      sep = ";", header = TRUE, stringsAsFactors = FALSE)
+} else if(file.exists("exdata-data-household_power_consumption.zip")) {
+  data0 <- read.table(unz("exdata-data-household_power_consumption.zip",
+                          "household_power_consumption.txt"),
+                      sep = ";", header = TRUE, stringsAsFactors = FALSE)
+} else {
+  temp <- tempfile()
+  download.file("https://archive.ics.uci.edu/ml/machine-learning-databases/00235/household_power_consumption.zip",temp)
+  data <- read.table(unz(temp, "household_power_consumption.txt"),
+                     sep = ";", header = TRUE, stringsAsFactors = FALSE)
+  unlink(temp)
+}
+
+##convert file
+data <- tbl_df(data)
+data[, 3:9] <- lapply(data[, 3:9], as.numeric)
+hist(data$Global_active_power, col = "red")
