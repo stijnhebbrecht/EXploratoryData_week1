@@ -30,6 +30,10 @@ dataFil <- dataFil[, c(10, 3:9)]
 
 ##plot
 
-plot(dataFil$Date_Time, dataFil$Sub_metering_1,dataFil$Sub_metering_2     type = "l",
-     ylab = "Energy sub metering)", xlab = "")
+plot(dataFil$Date_Time, dataFil$Sub_metering_1, type="l", ylab="Energy Submetering", xlab="")
+lines(dataFil$Date_Time, dataFil$Sub_metering_2, type="l", col="red")
+lines(dataFil$Date_Time, dataFil$Sub_metering_3, type="l", col="blue")
+legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty=1, lwd=2.5, col=c("black", "red", "blue"))
+dev.copy(png,file="plot3.png",width=480, height=480) 
+dev.off()
 
